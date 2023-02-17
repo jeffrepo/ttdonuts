@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductInfoPopup" t-inherit="point_of_sale.ProductInfoPopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('modal-dialog')]//div[hasclass('popup')]//div[hasclass('section-financials')]" position="replace">
+            <div class="section-financials">
+                <div class="section-title">
+                    <span>Financials</span>
+                    <div class="section-title-line"></div>
+                </div>
+                <div class="section-financials-body">
+                    <table>
+                        <tr>
+                            <td>Price excl. VAT:</td>
+                            <td><t t-esc="env.pos.format_currency(productInfo.all_prices.price_without_tax)"/></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <t t-foreach="productInfo.pricelists" t-as="pricelist" t-key="pricelist.name">
+                            <tr>
+                                <td t-esc="pricelist.name"/>
+                                <td t-esc="env.pos.format_currency(pricelist.price)"/>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('modal-dialog')]//div[hasclass('popup')]//div[hasclass('section-inventory')]" position="replace">
+            <div class="section-inventory">
+                <div class="section-inventory" t-if="productInfo.warehouses.length > 0">
+                    <div class="section-title">
+                        <span>Inventory <t t-if="env.pos.pos_session.update_stock_at_closing">(as of opening)</t></span>
+                        <div class="section-title-line"></div>
+                    </div>
+                    <div class="section-inventory-body">
+                        <table class="mobile-table">
+                            <t t-foreach="productInfo.warehouses" t-as="warehouse" t-key="warehouse.name">
+                                <t t-if="warehouse.name == env.pos.config.warehouse_id[1]">
+                                    <tr>
+                                        <td><span t-esc="warehouse.name" class="table-name"/>:</td>
+                                        <td><t t-esc="warehouse.available_quantity"/><t t-esc="warehouse.id"/> <t t-esc="warehouse.uom"/> available,</td>
+                                        <td><t t-esc="warehouse.forecasted_quantity"/> forecasted</td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
