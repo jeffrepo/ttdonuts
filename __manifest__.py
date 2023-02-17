@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 {
     'name': 'Taste top donuts',
     'version': '1.1',
@@ -23,4 +21,5 @@
     },
     'installable': True,
     'auto_install': False,
+    'license': 'LGPL-3',
 }
