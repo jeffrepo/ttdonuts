@@ -8,12 +8,9 @@
     'sequence': 100,
     'summary': 'Módulo para Taste top donuts',
     'description': """
-
-""",
+        Taste top donuts
+    """,
     'depends': ['base','point_of_sale'],
-    'data': [
-
-    ],
     'assets':{
         'point_of_sale.assets': [
             'ttdonuts/static/src/js/**/*.js',
