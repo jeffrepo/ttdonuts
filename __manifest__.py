@@ -4,7 +4,7 @@
 {
     'name': 'Taste top donuts',
     'version': '1.1',
-    'category': 'Hidden',
+    'category': 'Sales/Point of Sale',
     'sequence': 100,
     'summary': 'Módulo para Taste top donuts',
     'description': """
