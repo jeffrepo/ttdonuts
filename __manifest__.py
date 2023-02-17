@@ -9,6 +9,11 @@
         Taste top donuts
     """,
     'depends': ['base','point_of_sale'],
+    'data': [],
+    'demo': [],
+    'installable': True,
+    'auto_install': True,
+    'license': 'LGPL-3',
     'assets':{
         'point_of_sale.assets': [
             'ttdonuts/static/src/js/**/*.js',
@@ -19,7 +24,5 @@
         'web.assets_backend': [
         ],
     },
-    'installable': True,
-    'auto_install': False,
-    'license': 'LGPL-3',
+
 }
