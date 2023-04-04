@@ -8,12 +8,16 @@
     'description': """
         Taste top donuts
     """,
-    'depends': ['base','point_of_sale'],
+    'depends': ['base','point_of_sale','stock'],
     'data': [],
     'demo': [],
     'installable': True,
     'auto_install': True,
     'license': 'LGPL-3',
+    'data': [
+        'views/stock_picking_views.xml',
+        'report/report_picking.xml',
+    ],
     'assets':{
         'point_of_sale.assets': [
             'ttdonuts/static/src/js/**/*.js',

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_picking_sum_totals" inherit_id="stock.report_delivery_document">
+        <xpath expr="//tr[@t-foreach='lines']" position="after">
+                <t t-set="cantidad_pedida" t-value="0"/>
+                <t t-set="cantidad_recibida" t-value="0"/>
+                <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>
+                <t t-foreach="o.move_lines" t-as="ml">
+                      <t t-set="cantidad_pedida" t-value="cantidad_pedida + ml.product_uom_qty"/>
+                      <t t-set="cantidad_recibida" t-vaue="cantidad_recibida + ml.quantity_done "/>
+                </t>  
+
+              
+                <tr>
+                    <td><strong>TOTAL</strong></td>
+                    <td><strong><span t-esc="cantidad_pedida"/></strong></td>
+                    <td><strong><span t-esc="cantidad_recibida"/></strong></td>
+                </tr>  
+        </xpath>
+   </template>
+</odoo>
