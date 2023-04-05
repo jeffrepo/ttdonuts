@@ -8,7 +8,7 @@
     'description': """
         Taste top donuts
     """,
-    'depends': ['base','point_of_sale','stock'],
+    'depends': ['base','point_of_sale','stock','account'],
     'data': [],
     'demo': [],
     'installable': True,
