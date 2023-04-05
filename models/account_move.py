@@ -13,3 +13,11 @@ class AccountMove(models.Model):
         if res:
             res.action_process_edi_web_services(with_commit=False)
         return res
+
+    def post(self):
+        res = super().post()
+        logging.warning('POST TT')
+        logging.warning(res)
+        if res:
+            res.action_process_edi_web_services(with_commit=False)
+        return res
