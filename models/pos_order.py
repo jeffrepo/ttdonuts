@@ -21,7 +21,7 @@ class PosORder(models.Model):
         attachment = super()._add_mail_attachment(name, ticket)
         logging.warning('_add_mail_attachment inherit don')
         logging.warning(attachment)
-        if res:
+        if attachment:
             if self.mapped('account_move'):
                 edi_documentos = self.env['account.edi.document'].search([('move_id', '=', self.account_move.ids[0]),('edi_format_name','=','CFDI (4.0)')])
                 if edi_documentos:
