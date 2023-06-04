@@ -9,10 +9,6 @@
         Taste top donuts
     """,
     'depends': ['base','point_of_sale','stock','account'],
-    'data': [],
-    'demo': [],
-    'installable': True,
-    'auto_install': True,
     'license': 'LGPL-3',
     'data': [
         'views/stock_picking_views.xml',
