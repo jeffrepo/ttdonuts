@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_picking_sum_totals" inherit_id="stock.report_delivery_document">
-        <xpath expr="//tr[@t-foreach='lines']" position="after">
-                <t t-set="cantidad_pedida" t-value="0"/>
-                <t t-set="cantidad_recibida" t-value="0"/>
-                <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>
-                <t t-foreach="o.move_lines" t-as="ml">
-                      <t t-set="cantidad_pedida" t-value="cantidad_pedida + ml.product_uom_qty"/>
-                      <t t-set="cantidad_recibida" t-vaue="cantidad_recibida + ml.quantity_done "/>
-                </t>  
-
-              
+    <template id="report_picking_sum_totals" inherit_id="stock.report_picking">
+        <xpath expr="//t[@t-foreach='o.move_line_ids_without_package']" position="after">
+            <t t-set="cantidad_donas" t-value="0"/>
+            <t t-foreach="o.move_line_ids_without_package" t-as="ml">
+                <t t-if="('DONAS' or 'BERLINA') in ml.product_id.categ_id.name">
+                    <t t-set="cantidad_donas" t-value="cantidad_donas + ml.qty_done"/>
+                </t>    
+            </t>
+            <t t-if="cantidad_donas &gt; 0">
                 <tr>
-                    <td><strong>TOTAL</strong></td>
-                    <td><strong><span t-esc="cantidad_pedida"/></strong></td>
-                    <td><strong><span t-esc="cantidad_recibida"/></strong></td>
-                </tr>  
+                    <td><strong>TOTAL DONAS</strong></td>
+                    <td><strong><t t-esc="cantidad_donas"/></strong></td>
+                    <td><strong></strong></td>
+                </tr> 
+            </t>    
         </xpath>
    </template>
 </odoo>
