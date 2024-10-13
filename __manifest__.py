@@ -4,6 +4,7 @@
     'version': '1.1',
     'category': 'Sales/Point of Sale',
     'sequence': 100,
+    'author': "Jefferson Sila",
     'summary': 'Módulo para Taste top donuts',
     'description': """
         Taste top donuts
@@ -24,5 +25,4 @@
     #     'web.assets_backend': [
     #     ],
     # },
-
 }
