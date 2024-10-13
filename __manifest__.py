@@ -14,15 +14,15 @@
         'views/stock_picking_views.xml',
         'report/report_picking.xml',
     ],
-    'assets':{
-        'point_of_sale.assets': [
-            'ttdonuts/static/src/js/**/*.js',
-        ],
-        'web.assets_qweb':[
-            'ttdonuts/static/src/xml/**/*.xml',
-        ],
-        'web.assets_backend': [
-        ],
-    },
+    # 'assets':{
+    #     'point_of_sale.assets': [
+    #         'ttdonuts/static/src/js/**/*.js',
+    #     ],
+    #     'web.assets_qweb':[
+    #         'ttdonuts/static/src/xml/**/*.xml',
+    #     ],
+    #     'web.assets_backend': [
+    #     ],
+    # },
 
 }
