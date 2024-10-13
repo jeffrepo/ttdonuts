@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_picking_sum_totals" inherit_id="stock.report_picking">
-        <xpath expr="//t[@t-foreach='o.move_line_ids_without_package']" position="after">
+        <xpath expr="//table[1]/tbody" position="after">
             <t t-set="cantidad_donas" t-value="0"/>
             <t t-foreach="o.move_line_ids_without_package" t-as="ml">
                 <t t-if="('DONAS' or 'BERLINA') in ml.product_id.categ_id.name">
-                    <t t-set="cantidad_donas" t-value="cantidad_donas + ml.qty_done"/>
+                    <t t-set="cantidad_donas" t-value="cantidad_donas + ml.quantity"/>
                 </t>    
             </t>
             <t t-if="cantidad_donas &gt; 0">
                 <tr>
                     <td><strong>TOTAL DONAS</strong></td>
                     <td><strong><t t-esc="cantidad_donas"/></strong></td>
-                    <td><strong></strong></td>
+                    <td><strong/></td>
                 </tr> 
             </t>    
         </xpath>
