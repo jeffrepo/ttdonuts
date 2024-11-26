@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductInfoPopup" t-inherit="point_of_sale.ProductInfoPopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('popup')]//div[hasclass('section-financials')]" position="replace">
+            <div class="section-financials mt-3 mb-4 pb-4 border-bottom text-start">
+                <h3 class="section-title">Financials</h3>
+                <div class="section-financials-body d-flex flex-column flex-sm-row">
+                    <table class="table table-borderless mb-0">
+                        <tr>
+                            <td>Price excl. Tax:</td>
+                            <td><t t-esc="env.utils.formatCurrency(productInfo.all_prices.price_without_tax)"/></td>
+                        </tr>
+                    </table>
+                    <table class="table table-borderless">
+                        <t t-foreach="productInfo.pricelists" t-as="pricelist" t-key="pricelist.name">
+                            <tr>
+                                <td t-esc="pricelist.name"/>
+                                <td t-esc="env.utils.formatCurrency(pricelist.price)"/>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+        
+        <xpath expr="///div[hasclass('popup')]//div[hasclass('section-inventory')]" position="replace">
+            <div class="section-inventory mt-3 mb-4 pb-4 border-bottom text-start" t-if="productInfo.warehouses.length > 0">
+                <h3 class="section-title">
+                    Inventory 
+                    <t t-if="pos.pos_session.update_stock_at_closing">(as of opening)</t>
+                </h3>
+                <div class="section-inventory-body">
+                    <t t-foreach="productInfo.warehouses" t-as="warehouse" t-key="warehouse.name">
+                        <t t-if="warehouse.name == pos.config.warehouse_id[1]">
+                            <div class="d-flex flex-column flex-md-row gap-2">
+                                <div>
+                                    <t t-esc="warehouse.name" class="table-name"/>
+                                    :
+                                </div>
+                                <div>
+                                    <span class="me-1 fw-bolder"><t t-esc="warehouse.available_quantity" class="table-name"/></span>
+                                    <t t-esc="warehouse.uom"/> available,
+                                </div>
+                                <div> 
+                                    <span class="me-1 fw-bolder"><t t-esc="warehouse.forecasted_quantity"/></span>
+                                    forecasted
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('popup')]//div[hasclass('section-order')]" position="replace">
+            <div class="section-order mt-3 mb-4 pb-4 border-bottom text-start">
+                <h3 class="section-title">Order</h3>
+                <div class="section-order-body">
+                    <table class="table table-borderless w-100 w-sm-50 mb-0">
+                        <tr>
+                            <td>Total Price excl. Tax:</td>
+                            <td t-esc="orderPriceWithoutTaxCurrency" class="table-value"/>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+        
+    </t>
+</templates>
